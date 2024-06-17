@@ -81,6 +81,18 @@ app.get('/delete-task/:taskId', (req, res) => {
         
 });
 
+app.get('/delete-tasks', (req, res) => {
+    readFile('./tasks.json')
+        .then((tasks) => {
+            tasks = [];
+
+            data = JSON.stringify(tasks, null, 2);
+
+            writeFile('./tasks.json', data)    
+            res.redirect('/');
+        })
+});
+
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
